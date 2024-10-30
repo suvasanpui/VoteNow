@@ -1,0 +1,26 @@
+this is a votting app
+
+functionality:-
+1. user can create a account and also signin using your unique identifier id(UIDAI ID)
+2. user can see a list of electors
+3. only admin can see which electors get how many number of vote
+4. user can vote only once
+5. user can edit your password
+6. admin can not give a vote
+7. admin can manage the electors like,  i>   remove electors 
+                                        ii>  modify electors
+                                        iii> update Electors
+
+
+
+Router:
+1. '/user/signup' (POST)- it is used for signup the user(age should be greater or equal to 18 and role is not a admin,bydefault role is voter)
+2. '/user/login'  (POST)-it is used for login the user(UIDAI no and password should be match , if match then it generate a token)
+3. '/user/profile' (GET)- it is used for access the profile (valid token is needed)
+4. '/user/profile/password' (PUT) - it is used for update the password (valid token is needed , currentPassword are should be same as a store user password in db and current pssword and new password are should be diffrent)
+5. '/electors' (POST) - it is used for added elctor by admin (valid admin token is needed)
+6. '/electors' (GET) - it is used for show all the electors (valid token is needed)
+7. '/electors/update/:updateID' (PUT) - it is used for update record of electors by admin (valid admin token is needed , updateID is elector id)
+8. '/electors/delete/:deleteID' (DELETE) - it is used for delete elector record of by admin (valid admin token is needed)
+9. 'electors/votes/:electorsID' (POST) - it is used for to given a vote , voter can only give a vote (valid voter token is needed)
+10.'electors/votes/counts' (GET) - it is used for to see the number of votes and it only see the admin (valid admin token is needed)
