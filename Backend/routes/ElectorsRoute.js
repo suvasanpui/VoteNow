@@ -43,7 +43,8 @@ route.get('/',jwtmiddleware,async(req,res)=>{
     const response=allElectors.map((data)=>{
     return{
       name:data.name,
-      party:data.party
+      party:data.party,
+      id:data.id
     }
   })
   return res.status(200).json({response})
@@ -132,6 +133,7 @@ route.post("/votes/:electorsID", jwtmiddleware, async (req, res) => {
     //update the voter details
     voter.isVoted = true;
     await voter.save();
+    res.status(200).json({message:"vote successfully"})
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internaml server error" });

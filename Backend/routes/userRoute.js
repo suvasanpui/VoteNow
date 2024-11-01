@@ -48,18 +48,22 @@ route.post('/login',async(req,res)=>{
     const {uidaiNo,password}=req.body;
     //check username in person database
     const user=await User.findOne({uidaiNo:uidaiNo});
+    if(!user){
+      return res.status(403).json({message:"user not exist"})
+    }
     if(!user || !(await user.comparePassword(password))){ //comparePassword is a function that match user with a password
       return res.status(401).json({error: "Invalid Username and Password"})
     } 
 
     //generate token
     const userPayload={
-      id:user.id
+      id:user.id,
+      uidaiNo:user.uidaiNo
     }
     //token generate
     const token=generateToken(userPayload);
     //return response
-    res.json({token})
+    res.status(200).json({message:"login successfully", response:user,token:token});
   }catch(err){
     console.log(err);
     res.status(500).json({error: "internal server error"})

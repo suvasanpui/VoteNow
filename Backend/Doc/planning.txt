@@ -24,3 +24,4 @@ Router:
 8. '/electors/delete/:deleteID' (DELETE) - it is used for delete elector record of by admin (valid admin token is needed)
 9. 'electors/votes/:electorsID' (POST) - it is used for to given a vote , voter can only give a vote (valid voter token is needed)
 10.'electors/votes/counts' (GET) - it is used for to see the number of votes and it only see the admin (valid admin token is needed)
+11.its run on 8000 port
